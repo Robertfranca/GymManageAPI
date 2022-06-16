@@ -8,12 +8,6 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,11 +23,13 @@ public class AlunoCadController {
                 .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(path = "/api/aluno")
     public List<AlunoCadModels> listar(){
         return ar.findAll();
     }
+
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(path = "/api/aluno/salvar")
     public AlunoCadModels salvar(@RequestBody AlunoCadModels aluno) {
@@ -41,6 +37,7 @@ public class AlunoCadController {
         System.out.println(aluno.getNome());
         return ar.save(aluno);
     }
+
     @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(path = "/api/aluno/{codigo}")
     public AlunoCadModels alterar(@PathVariable  Integer codigo, @RequestBody AlunoCadModels aluno) {
