@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tlb_usuario")
-public class UserCadModels implements UserDetails {
+public class UserCadModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,7 @@ public class UserCadModels implements UserDetails {
 
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<perfilCadModels> perfil = new ArrayList<perfilCadModels>();
+
 
     public long getId() {
         return id;
@@ -55,42 +54,6 @@ public class UserCadModels implements UserDetails {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return perfil;
-    }
-
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
 

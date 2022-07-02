@@ -1,6 +1,8 @@
 package com.gymManage.modules;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Cad_professores")
@@ -14,28 +16,36 @@ public class ProfCadModels {
     @Column(name = "id")
     private Integer id;
 
+    @NotBlank
     @Column(name = "nome", length = 100)
     private String nome;
 
+    @NotBlank
     @Column(name = "sobrenome", length = 50)
     private String sobrenome;
 
+    @Email
     @Column(name = "email", length = 100)
     private String email;
 
+    @NotBlank
+    @Column(name = "telefone", length = 100)
+    private String telefone;
+
+    @NotBlank
+    @Column(name = "cpf", length = 100)
+    private String cpf;
+
+    @NotBlank
     @Column(name = "cref", length = 100)
     private String cref;
 
+    @NotBlank
     @Column(name = "dropvalue")
     private String dropvalue;
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+
+
 
     public String getNome() {
         return nome;

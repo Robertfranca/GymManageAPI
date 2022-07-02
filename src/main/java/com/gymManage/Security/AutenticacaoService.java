@@ -1,8 +1,8 @@
 package com.gymManage.Security;
 
+import com.gymManage.data.DetalhesUsuarioData;
 import com.gymManage.modules.UserCadModels;
 import com.gymManage.repository.UsuarioCadRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,17 +12,21 @@ import java.util.Optional;
 
 @Service
 public class AutenticacaoService implements UserDetailsService {
-    @Autowired
-    private UsuarioCadRepository user;
+
+    private final UsuarioCadRepository user;
+
+    public AutenticacaoService(UsuarioCadRepository user) {
+        this.user = user;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<UserCadModels> users = user.findByEmail(email);
 
-        if (users.isPresent()){
-            return users.get();
+        if (users.isEmpty()){
+            throw new UsernameNotFoundException("Dados invalidos");
         }
-        throw new UsernameNotFoundException("Dados invalidos");
+        return new DetalhesUsuarioData(users);
 
     }
 }

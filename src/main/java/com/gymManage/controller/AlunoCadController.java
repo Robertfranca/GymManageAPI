@@ -18,6 +18,7 @@ public class AlunoCadController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(path = "/api/aluno/{codigo}")
+
     public ResponseEntity consultar(@PathVariable("codigo") Integer codigo) {
         return ar.findById(codigo)
                 .map(record -> ResponseEntity.ok().body(record))

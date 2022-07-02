@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CorsConfigurate  implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry aluno) {
-        aluno.addMapping("/api/aluno/{codigo}").allowedOrigins("http://localhost:3000").allowedMethods(
+        aluno.addMapping("/**").allowedOrigins("http://localhost:3000").allowedMethods(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT"
         );
     }

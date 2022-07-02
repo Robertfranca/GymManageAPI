@@ -34,8 +34,6 @@ public class FichaCadController {
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(path = "/api/ficha/salvar")
     public FichaCadModels cadficha(@RequestBody FichaCadModels ficha) {
-
-        System.out.println(ficha.getId());
         return fr.save(ficha);
     }
 
