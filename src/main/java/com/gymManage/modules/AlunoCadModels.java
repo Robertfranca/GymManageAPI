@@ -49,6 +49,9 @@ public class AlunoCadModels {
     private String dropvalue;
 
 
+    public Integer getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;

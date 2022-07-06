@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,7 +41,7 @@ public class ProfCadController {
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(path = "/api/professor/salvar")
     @CacheEvict(value = "api/professor", allEntries = true)
-    public ProfCadModels salvar(@RequestBody ProfCadModels prof) {
+    public ProfCadModels salvar(@RequestBody @Valid ProfCadModels prof) {
 
         System.out.println(prof.getNome());
         System.out.println("limpando o cache");
@@ -50,7 +51,7 @@ public class ProfCadController {
     @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(path = "/api/professor/{codigo}")
     @CacheEvict(value = "api/professor", allEntries = true)
-    public ProfCadModels alterar(@PathVariable  Integer codigo, @RequestBody ProfCadModels prof) {
+    public ProfCadModels alterar(@PathVariable  Integer codigo, @RequestBody @Valid ProfCadModels prof) {
 
         ProfCadModels profEdit=  pr.findById(codigo).get();
         BeanUtils.copyProperties(prof,profEdit,"codigo");

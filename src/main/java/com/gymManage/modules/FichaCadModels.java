@@ -41,6 +41,10 @@ public class FichaCadModels {
     @Column(name = "dropvalue")
     private String dropvalue;
 
+    public Integer getId() {
+        return id;
+    }
+
 
     public String getNome_aluno() {
         return nome_aluno;

@@ -45,6 +45,9 @@ public class ProfCadModels {
     private String dropvalue;
 
 
+    public Integer getId() {
+        return id;
+    }
 
 
     public String getNome() {

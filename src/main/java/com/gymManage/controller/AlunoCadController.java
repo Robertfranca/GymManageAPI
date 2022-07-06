@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,7 @@ public class AlunoCadController {
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(path = "/api/aluno/salvar")
     @CacheEvict(value = "api/aluno", allEntries = true)
-    public AlunoCadModels salvar(@RequestBody AlunoCadModels aluno) {
+    public AlunoCadModels salvar(@RequestBody @Valid AlunoCadModels aluno) {
 
         System.out.println(aluno.getNome());
         System.out.println("cache atualizado");
@@ -51,7 +52,7 @@ public class AlunoCadController {
     @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(path = "/api/aluno/{codigo}")
     @CacheEvict(value = "api/aluno", allEntries = true)
-    public AlunoCadModels alterar(@PathVariable  Integer codigo, @RequestBody AlunoCadModels aluno) {
+    public AlunoCadModels alterar(@PathVariable  Integer codigo, @RequestBody @Valid AlunoCadModels aluno) {
         AlunoCadModels alunoEdit=  ar.findById(codigo).get();
         BeanUtils.copyProperties(aluno,alunoEdit,"codigo");
         System.out.println("cache atualizado");
