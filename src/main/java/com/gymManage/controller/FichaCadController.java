@@ -22,7 +22,7 @@ public class FichaCadController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(path = "/api/ficha/{codigo}")
-    @Cacheable("api/ficha_list")
+    @Cacheable("api/ficha")
     public ResponseEntity consultar(@PathVariable("codigo") Integer codigo) {
         System.out.println("Cache ativo");
         return fr.findById(codigo)
@@ -31,15 +31,15 @@ public class FichaCadController {
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping(path = "/api/ficha_list")
-    @Cacheable("api/ficha_list")
+    @GetMapping(path = "/api/ficha")
+    @Cacheable("api/ficha")
     public List<FichaCadModels> listar(){
         return fr.findAll();
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(path = "/api/ficha/salvar")
-    @CacheEvict(value = "api/ficha_list", allEntries = true)
+    @PostMapping(path = "/api/ficha")
+    @CacheEvict(value = "api/ficha", allEntries = true)
     public FichaCadModels cadficha(@RequestBody @Valid FichaCadModels ficha) {
         System.out.println("Cache ativo");
         return fr.save(ficha);
@@ -47,7 +47,7 @@ public class FichaCadController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(path = "/api/ficha/{codigo}")
-    @CacheEvict(value = "api/ficha_list", allEntries = true)
+    @CacheEvict(value = "api/ficha", allEntries = true)
     public FichaCadModels alterar(@PathVariable  Integer codigo, @RequestBody @Valid FichaCadModels ficha) {
         FichaCadModels fichaEdit=  fr.findById(codigo).get();
         BeanUtils.copyProperties(ficha,fichaEdit,"codigo");
@@ -57,7 +57,7 @@ public class FichaCadController {
     }
 
     @DeleteMapping(path = "/api/ficha/{codigo}")
-    @CacheEvict(value = "api/ficha_list", allEntries = true)
+    @CacheEvict(value = "api/ficha", allEntries = true)
     public void deletar(@PathVariable  Integer codigo) {
         System.out.println("Cache ativo");
        fr.deleteById(codigo);

@@ -39,7 +39,7 @@ public class ProfCadController {
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(path = "/api/professor/salvar")
+    @PostMapping(path = "/api/professor")
     @CacheEvict(value = "api/professor", allEntries = true)
     public ProfCadModels salvar(@RequestBody @Valid ProfCadModels prof) {
 

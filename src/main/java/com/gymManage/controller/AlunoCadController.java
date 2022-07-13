@@ -40,7 +40,7 @@ public class AlunoCadController {
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(path = "/api/aluno/salvar")
+    @PostMapping(path = "/api/aluno")
     @CacheEvict(value = "api/aluno", allEntries = true)
     public AlunoCadModels salvar(@RequestBody @Valid AlunoCadModels aluno) {
 
